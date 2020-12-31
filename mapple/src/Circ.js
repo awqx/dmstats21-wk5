@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { scaleLinear } from 'd3-scale'
 import { select } from 'd3-selection'
 
 class Circ extends Component {
@@ -32,18 +31,16 @@ class Circ extends Component {
             .data(schools)
             .enter()
             .append("circle")
-
-        select(node)
             .attr("cy", this.props.size[1]/2)
-            .attr("cx", function (d, i) {return (i + 1) * 50})
-            .attr("r", function (d) {
+            .attr("cx", (d, i) => (i + 1) * 50)
+            .attr("r", d => {
                 if (d.signups > 3500) {
                     return 20;
                 } else {
                     return 10;
                 }
             })
-            .attr("fill", function (d) {return d.color; })
+            .attr("fill", d => d.color)
             .attr("stroke", "black");
     }
     render() {
@@ -52,3 +49,4 @@ class Circ extends Component {
             </svg>
     }
 }
+export default Circ
